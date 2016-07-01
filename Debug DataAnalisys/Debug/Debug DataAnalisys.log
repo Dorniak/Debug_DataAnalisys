@@ -1,0 +1,9 @@
+﻿  DataAnalisys.cpp
+DataAnalisys\DataAnalisys.cpp(94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+DataAnalisys\DataAnalisys.cpp(95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+DataAnalisys\DataAnalisys.cpp(353): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Interfaz.cpp
+  Generating Code...
+  DataAnalisys.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug DataAnalisys\Debug\Debug DataAnalisys.exe
+  Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug DataAnalisys\Debug\Debug DataAnalisys.pdb (Partial PDB)
