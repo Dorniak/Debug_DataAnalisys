@@ -38,9 +38,6 @@
     <ClInclude Include="DataAnalisys\DataAnalisys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Flags\Parametros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Obstaculo\Obstaculo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Punto3D\Punto3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parametros\Parametros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,7 +17,7 @@ public:
 	void Kill();
 
 private:
-
+	int frecuencia;
 	int numCercanos;
 	int localizador;
 	int Obstmenor;

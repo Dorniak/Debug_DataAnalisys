@@ -64,6 +64,7 @@ namespace DebugDataAnalisys {
 			ArrayDataAnalisys[OPENING] = 180;
 			ArrayDataAnalisys[CAR_VELOCITY] = 10;
 			ArrayDataAnalisys[INFORME_ANALISYS] = "";
+			ArrayDataAnalisys[FRECUENCIA] = 20;
 #pragma endregion
 #pragma region ArrayDataReader
 			ArrayDataReader[INFORME] = "";
@@ -384,6 +385,7 @@ namespace DebugDataAnalisys {
 	}
 	private: System::Void Cargar_Click(System::Object^  sender, System::EventArgs^  e) {
 		ArrayDataReader[Hz] = Convert::ToInt32(Hercios->Text);
+		ArrayDataAnalisys[INFORME_ANALISYS] = Convert::ToInt32(Hercios->Text);
 	}
 	private: System::Void Interfaz_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 		if (Threads[THREAD_READER])

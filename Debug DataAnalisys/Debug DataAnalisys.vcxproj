@@ -142,12 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataAnalisys\DataAnalisys.h" />
-    <ClInclude Include="Flags\Parametros.h" />
     <ClInclude Include="Interfaz.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Obstaculo\Obstaculo.h" />
     <ClInclude Include="OpenGl\OpenGl.h" />
+    <ClInclude Include="Parametros\Parametros.h" />
     <ClInclude Include="Punto3D\Punto3D.h" />
     <ClInclude Include="Reader\reader.h" />
   </ItemGroup>
