@@ -31,7 +31,7 @@ namespace DebugDataAnalisys {
 			//
 			Puntos = gcnew List<Punto3D^>();
 			setlocale(LC_NUMERIC, "es_ES");
-			Conclusiones = gcnew List<int>(2);
+			Conclusiones = gcnew List<double>(2);
 			Conclusiones->Add(0);
 			Conclusiones->Add(0);
 			ArrayDataAnalisys = gcnew cli::array<Object^>(SIZE_ARRAY_ANALISYS);
@@ -330,7 +330,7 @@ namespace DebugDataAnalisys {
 		cli::array<bool>^ Flags;
 
 		//Conclusiones
-		List<int>^ Conclusiones;
+		List<double>^ Conclusiones;
 
 		String^ informe;
 		String ^ entrada;

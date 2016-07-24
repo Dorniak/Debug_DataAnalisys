@@ -1,2 +1,3 @@
-﻿  Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.exe
+﻿  DataAnalisys.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.exe
   Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.pdb (Partial PDB)

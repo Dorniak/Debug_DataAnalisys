@@ -1,5 +1,5 @@
 #include "DataAnalisys.h"
-DataAnalisys::DataAnalisys(List<Punto3D^>^ puntosController, List<Obstaculo^>^ ObstaculosController, cli::array<Object^>^ ParamAnalisys, List<int>^ Conclusiones, cli::array<bool>^ Flags, cli::array<Thread^>^ Threads, OpenGl^ Dibujador)
+DataAnalisys::DataAnalisys(List<Punto3D^>^ puntosController, List<Obstaculo^>^ ObstaculosController, cli::array<Object^>^ ParamAnalisys, List<double>^ Conclusiones, cli::array<bool>^ Flags, cli::array<Thread^>^ Threads, OpenGl^ Dibujador)
 {
 	try {
 		this->Informe = Informe;
@@ -75,7 +75,7 @@ void DataAnalisys::AnalisysThread2()
 							Informar("Preparar obstaculos");
 							prepararObstaculos();
 							Informar("Relacionar obstaculos");
-						//	RelacionarObstaculos();
+							RelacionarObstaculos();
 							//Copiar el vector de obstaculos obtenido en Controller y comprueba colisiones
 							Informar("Copiar Obstaculos");
 							copiarObstaculos();
@@ -453,13 +453,16 @@ void DataAnalisys::EliminarObstaculos()
 
 void DataAnalisys::RelacionarObstaculos()
 {
+	Informar("Relacionar obstaculos inicio");
 	for (int i = 0; i < Obstaculos->Count; i++)
 	{
 		indice = -1;
 		for (int j = 0; j < ObstaculosvAnt->Count; j++)
 		{
+			Informar("Primera comparacion");
 			if (ObstaculosvAnt[j]->getVelocity() >= 1)
 			{
+				Informar("Relacion por velocidad");
 				//0.3 es la distancia maxima que que puede recorrer entre barridos
 				if (Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getPrediceCenter()) < (VCOCHE / 3.6) * TIEMPO_MARGEN)// POrque 0.3??  = 0.0833
 				{
@@ -469,10 +472,15 @@ void DataAnalisys::RelacionarObstaculos()
 			}
 			else if (Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getCenter()) < DISTANCIA_MAXIMA /*&& fabs(Obstaculos[i].getYaw() - Obstaculos[i].getYaw()) < 5*/)
 			{
-				relacionarPos(i, j, VCOCHE, frecuencia);
+				Informar("Relacion por posicion");
+				relacionarPos(i, j,frecuencia);
 				indice = j;
+
 			}
+			Informar("Obstaculo " + i +" "+ j+" Distancia ==> "+ Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getCenter()));
 		}
+		
+		Informar("Obstaculo " + i + " ==> " + indice);
 	}
 }
 
@@ -484,7 +492,7 @@ void DataAnalisys::relacionarVel(int i, int j)
 	Obstaculos[i]->calculateTimeToCollision(VCOCHE);
 }
 
-void DataAnalisys::relacionarPos(int i, int j, int VelC, int Frecuency)
+void DataAnalisys::relacionarPos(int i, int j, double Frecuency)
 {
 	Obstaculos[i]->setDirection(ObstaculosvAnt[j]->getCenter());
 	Obstaculos[i]->calculatePrediceCenter();

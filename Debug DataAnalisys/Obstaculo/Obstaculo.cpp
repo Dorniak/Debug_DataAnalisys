@@ -70,38 +70,38 @@ Punto3D ^ Obstaculo::getCloser()
 	// TODO: insert return statement here
 }
 
-//Punto3D ^ Obstaculo::getPunto1()
-//{
-//	return Punto1;
-//}
-//Punto3D ^ Obstaculo::getPunto2()
-//{
-//	return Punto2;
-//}
-//Punto3D ^ Obstaculo::getPunto3()
-//{
-//	return Punto3;
-//}
-//Punto3D ^ Obstaculo::getPunto4()
-//{
-//	return Punto4;
-//}
-//Punto3D ^ Obstaculo::getPunto5()
-//{
-//	return Punto5;
-//}
-//Punto3D ^ Obstaculo::getPunto6()
-//{
-//	return Punto6;
-//}
-//Punto3D ^ Obstaculo::getPunto7()
-//{
-//	return Punto7;
-//}
-//Punto3D ^ Obstaculo::getPunto8()
-//{
-//	return Punto8;
-//}
+Punto3D ^ Obstaculo::getPunto1()
+{
+	return Punto1;
+}
+Punto3D ^ Obstaculo::getPunto2()
+{
+	return Punto2;
+}
+Punto3D ^ Obstaculo::getPunto3()
+{
+	return Punto3;
+}
+Punto3D ^ Obstaculo::getPunto4()
+{
+	return Punto4;
+}
+Punto3D ^ Obstaculo::getPunto5()
+{
+	return Punto5;
+}
+Punto3D ^ Obstaculo::getPunto6()
+{
+	return Punto6;
+}
+Punto3D ^ Obstaculo::getPunto7()
+{
+	return Punto7;
+}
+Punto3D ^ Obstaculo::getPunto8()
+{
+	return Punto8;
+}
 
 Punto3D ^ Obstaculo::getFarthest()
 {
@@ -292,53 +292,53 @@ void Obstaculo::prepareObstacle()
 
 
 
-	////Calculo d la caja real
+	//TODO::Calculo d la caja real
 
-	////Recta1 A=A12 B=B12 C=C1
-	////Recta2 A=A12 B=B12 C=C2
-	////Recta3 A=A34 B=B34 C=C3
-	////Recta4 A=A34 B=B34 C=C4
-
-
-	//double A12 = (Farthest->getCoordinatesX() - Closer->getCoordinatesX());
-	//double B12 = -(Farthest->getCoordinatesY() - Closer->getCoordinatesY());
-	//double m1 = (-B12) / A12;
-	//double C1 = (-West->getCoordinatesX() / m1) + West->getCoordinatesY();
-	//double C2 = (-East->getCoordinatesX() / m1) + East->getCoordinatesY();
+	//Recta1 A=A12 B=B12 C=C1
+	//Recta2 A=A12 B=B12 C=C2
+	//Recta3 A=A34 B=B34 C=C3
+	//Recta4 A=A34 B=B34 C=C4
 
 
-	//double A34 = (West->getCoordinatesX() - East->getCoordinatesX());
-	//double B34 = -(West->getCoordinatesY() - East->getCoordinatesY());
-	//double m2 = (-B34) / A34;
-	//double C3 = (-Farthest->getCoordinatesX() / m2) + Farthest->getCoordinatesY();
-	//double C4 = (-Closer->getCoordinatesX() / m2) + Closer->getCoordinatesY();
+	double A12 = (Farthest->getCoordinatesX() - Closer->getCoordinatesX());
+	double B12 = -(Farthest->getCoordinatesY() - Closer->getCoordinatesY());
+	double m1 = (-B12) / A12;
+	double C1 = (-West->getCoordinatesX() / m1) + West->getCoordinatesY();
+	double C2 = (-East->getCoordinatesX() / m1) + East->getCoordinatesY();
 
-	////Corte de rectas 1 y 4
-	//Punto1 = Corte(A12, B12, C1, A34, B34, C4);//Arriba
-	//Punto1->setCoordinatesZ(North->getCoordinatesZ());
-	//Punto5 = Corte(A12, B12, C1, A34, B34, C4);//Abajo
-	//Punto5->setCoordinatesZ(South->getCoordinatesZ());
-	////Corte de rectas 1 y 3
-	//Punto2 = Corte(A12, B12, C1, A34, B34, C3);//Arriba
-	//Punto2->setCoordinatesZ(North->getCoordinatesZ());
-	//Punto6 = Corte(A12, B12, C1, A34, B34, C3);//Abajo
-	//Punto6->setCoordinatesZ(South->getCoordinatesZ());
-	////Corte de rectas 2 y 3
-	//Punto3 = Corte(A12, B12, C2, A34, B34, C3);//Arriba
-	//Punto3->setCoordinatesZ(North->getCoordinatesZ());
-	//Punto7 = Corte(A12, B12, C2, A34, B34, C3);//Abajo
-	//Punto7->setCoordinatesZ(South->getCoordinatesZ());
-	////Corte de rectas 2 y 4
-	//Punto4 = Corte(A12, B12, C2, A34, B34, C4);//Arriba
-	//Punto4->setCoordinatesZ(North->getCoordinatesZ());
-	//Punto8 = Corte(A12, B12, C2, A34, B34, C4);//Abajo
-	//Punto8->setCoordinatesZ(South->getCoordinatesZ());
+
+	double A34 = (West->getCoordinatesX() - East->getCoordinatesX());
+	double B34 = -(West->getCoordinatesY() - East->getCoordinatesY());
+	double m2 = (-B34) / A34;
+	double C3 = (-Farthest->getCoordinatesX() / m2) + Farthest->getCoordinatesY();
+	double C4 = (-Closer->getCoordinatesX() / m2) + Closer->getCoordinatesY();
+
+	//Corte de rectas 1 y 4
+	Punto1 = Corte(A12, B12, C1, A34, B34, C4);//Arriba
+	Punto1->setCoordinatesZ(North->getCoordinatesZ());
+	Punto5 = Corte(A12, B12, C1, A34, B34, C4);//Abajo
+	Punto5->setCoordinatesZ(South->getCoordinatesZ());
+	//Corte de rectas 1 y 3
+	Punto2 = Corte(A12, B12, C1, A34, B34, C3);//Arriba
+	Punto2->setCoordinatesZ(North->getCoordinatesZ());
+	Punto6 = Corte(A12, B12, C1, A34, B34, C3);//Abajo
+	Punto6->setCoordinatesZ(South->getCoordinatesZ());
+	//Corte de rectas 2 y 3
+	Punto3 = Corte(A12, B12, C2, A34, B34, C3);//Arriba
+	Punto3->setCoordinatesZ(North->getCoordinatesZ());
+	Punto7 = Corte(A12, B12, C2, A34, B34, C3);//Abajo
+	Punto7->setCoordinatesZ(South->getCoordinatesZ());
+	//Corte de rectas 2 y 4
+	Punto4 = Corte(A12, B12, C2, A34, B34, C4);//Arriba
+	Punto4->setCoordinatesZ(North->getCoordinatesZ());
+	Punto8 = Corte(A12, B12, C2, A34, B34, C4);//Abajo
+	Punto8->setCoordinatesZ(South->getCoordinatesZ());
 }
-//Punto3D^ Obstaculo::Corte(double A1, double B1, double C1, double A2, double B2, double C2) {
-//	double T = ((A1*B2) - (B1*A2));
-//	double X = (((C1*B2) - (C2*B1)) / T);
-//	double Y = (((A1*C2) - (A2*C1)) / T);
-//	Punto3D^ result = gcnew Punto3D(X, Y, 0);
-//	return result;
-//}
+Punto3D^ Obstaculo::Corte(double A1, double B1, double C1, double A2, double B2, double C2) {
+	double T = ((A1*B2) - (B1*A2));
+	double X = (((C1*B2) - (C2*B1)) / T);
+	double Y = (((A1*C2) - (A2*C1)) / T);
+	Punto3D^ result = gcnew Punto3D(X, Y, 0);
+	return result;
+}
 #pragma endregion
