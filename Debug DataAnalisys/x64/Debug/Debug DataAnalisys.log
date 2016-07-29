@@ -1,3 +1,5 @@
-﻿  DataAnalisys.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+﻿  OpenGl.cpp
+d:\documentos\github\debug_dataanalisys\debug dataanalisys\opengl\opengl.cpp(50): warning C4700: uninitialized local variable 'argv' used
+  DataAnalisys.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.exe
   Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.pdb (Partial PDB)

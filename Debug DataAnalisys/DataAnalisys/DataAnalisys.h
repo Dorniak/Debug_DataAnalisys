@@ -9,8 +9,8 @@
 ref class DataAnalisys {
 public:
 	DataAnalisys(List<Punto3D^>^ puntosController, List<Obstaculo^>^ ObstaculosController, cli::array<Object^>^ ParamAnalisys, List<double>^ Conclusiones, cli::array<bool>^ Flags, cli::array<Thread^>^ Threads, OpenGl^ Dibujador);
-	void AnalisysThread2();
-	void Esperar2();
+	void AnalisysThread_debug();
+	void Esperar_debug();
 	void Kill();
 private:
 	int frecuencia;

@@ -16,7 +16,7 @@ DataAnalisys::DataAnalisys(List<Punto3D^>^ puntosController, List<Obstaculo^>^ O
 		cambios = 0;
 		PCercanos = gcnew cli::array<Punto3D^>(4);
 		if (!thread_analysis) {
-			thread_analysis = gcnew Thread(gcnew ThreadStart(this, &DataAnalisys::Esperar2));
+			thread_analysis = gcnew Thread(gcnew ThreadStart(this, &DataAnalisys::Esperar_debug));
 		}
 		thread_analysis->Start();
 		//Guarda el identificador de thread en el array de threads del Controllerador 
@@ -34,7 +34,7 @@ DataAnalisys::DataAnalisys(List<Punto3D^>^ puntosController, List<Obstaculo^>^ O
 //apertura::Angulo de interes de lectura en grados
 //List<Punto3D^>^ matriz, double resolucionAngular,double Vcoche, double &consigna_velocidad, double &consigna_volante, double apertura
 
-void DataAnalisys::AnalisysThread2()
+void DataAnalisys::AnalisysThread_debug()
 {
 	Informar("Iniciando Thread Analisis");
 	//while (Flags[FLAG_ANALISYS] && !Flags[FLAG_WARNING] && !Flags[FLAG_PAUSA])
@@ -95,8 +95,8 @@ void DataAnalisys::AnalisysThread2()
 				Conclusiones[0] = consigna_velocidad;
 				Conclusiones[1] = consigna_volante;
 			}
-			Sleep(200);
 			Flags[FLAG_ANALIZAR] = false;
+			Sleep(200);
 		}
 		catch (Exception^ e)
 		{
@@ -107,11 +107,10 @@ void DataAnalisys::AnalisysThread2()
 	}
 	//En caso de que se desactive y se reactive despues hay que limpiar los objetos
 	ObstaculosvAnt->Clear();
-	Esperar2();
+	Esperar_debug();
 }
 
-
-void DataAnalisys::Esperar2()
+void DataAnalisys::Esperar_debug()
 {
 	Informar("ESTOY EN ESPERA");
 	while (!Flags[FLAG_ANALIZAR]) {
@@ -119,7 +118,7 @@ void DataAnalisys::Esperar2()
 		//		Kill();
 		Sleep(200);
 	}
-	AnalisysThread2();
+	AnalisysThread_debug();
 }
 
 void DataAnalisys::Kill()
@@ -404,7 +403,7 @@ void DataAnalisys::Segmentacion(List<Punto3D^>^ matrix, double apertura)
 				}
 			}
 		}
-		catch (Exception^ e) {
+		catch (Exception^) {
 		}
 	}
 }
@@ -424,7 +423,7 @@ void DataAnalisys::prepararObstaculos()
 {
 	for (int i = 0; i < Obstaculos->Count; i++)
 	{
-		Obstaculos[i]->prepareObstacle();//TODO::Calcular centro,cubo,y todo lo necesario
+		Obstaculos[i]->prepareObstacle();
 	}
 }
 
@@ -442,7 +441,6 @@ void DataAnalisys::EliminarObstaculos()
 		}
 		else if (Obstaculos[p]->components->Count < TAMAÑO_MINIMO_OBSTACULO)
 		{
-			//TODO::Ajustar el numero minimo de puntos para considerarlo un obstaculo
 			Obstaculos->RemoveAt(p);
 			p--;
 			ObstPequeños++;
@@ -459,10 +457,10 @@ void DataAnalisys::RelacionarObstaculos()
 		indice = -1;
 		for (int j = 0; j < ObstaculosvAnt->Count; j++)
 		{
-			Informar("Primera comparacion");
+			//Informar("Primera comparacion");
 			if (ObstaculosvAnt[j]->getVelocity() >= 1)
 			{
-				Informar("Relacion por velocidad");
+				//Informar("Relacion por velocidad");
 				//0.3 es la distancia maxima que que puede recorrer entre barridos
 				if (Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getPrediceCenter()) < (VCOCHE / 3.6) * TIEMPO_MARGEN)// POrque 0.3??  = 0.0833
 				{
@@ -472,15 +470,17 @@ void DataAnalisys::RelacionarObstaculos()
 			}
 			else if (Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getCenter()) < DISTANCIA_MAXIMA /*&& fabs(Obstaculos[i].getYaw() - Obstaculos[i].getYaw()) < 5*/)
 			{
-				Informar("Relacion por posicion");
+				//Informar("Relacion por posicion");
 				relacionarPos(i, j,frecuencia);
 				indice = j;
 
 			}
-			Informar("Obstaculo " + i +" "+ j+" Distancia ==> "+ Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getCenter()));
+			//Informar("Obstaculo " + i +" "+ j+" Distancia ==> "+ Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[j]->getCenter()));
 		}
-		
-		Informar("Obstaculo " + i + " ==> " + indice);
+		if (indice != -1) {
+			Informar("Obstaculo " + i + " ==> " + indice + " Distancia: " + Obstaculos[i]->getCenter()->distanceToPoint(ObstaculosvAnt[indice]->getCenter()));
+		}
+		else Informar("Obstaculo " + i + " no asignado");
 	}
 }
 
@@ -498,7 +498,7 @@ void DataAnalisys::relacionarPos(int i, int j, double Frecuency)
 	Obstaculos[i]->calculatePrediceCenter();
 	Obstaculos[i]->setVelocity(VCOCHE, Frecuency);
 }
-//TODO::Modificar en el original
+
 bool DataAnalisys::comprobarBloqueo(List<Punto3D^>^ matriz)
 {
 
@@ -506,9 +506,9 @@ bool DataAnalisys::comprobarBloqueo(List<Punto3D^>^ matriz)
 	int medio = (matriz->Count / 16) / 2;
 	Punto3D^ prueba;
 
-	for (int k = medio - 30; k < medio + 30; k++) {
+	for (int k = medio*0.95; k < medio*1.05; k++) {//5 % de vision delantera
 		for (int i = 0; i < NUMERO_FILAS; i++) {
-			if (matriz[convaPos(k, i)]->valido && matriz[convaPos(k, i)]->getDistance() < 15 && matriz[convaPos(k, i)]->getCoordinatesZ() > 5) {//Altura de bloquepmayor k 0.2
+			if (matriz[convaPos(k, i)] && matriz[convaPos(k, i)]->valido && matriz[convaPos(k, i)]->getDistance() < 15 && matriz[convaPos(k, i)]->getCoordinatesZ() > 5) {//Altura de bloquepmayor k 0.2
 				prueba = matriz[convaPos(k, i)];
 				return true;
 			}

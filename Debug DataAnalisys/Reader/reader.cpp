@@ -18,7 +18,7 @@ DataReader::DataReader(List<Punto3D^>^ puntosController_in, cli::array<Object^>^
 		thread_reader->Start();
 		this->Threads[THREAD_READER] = thread_reader;
 	}
-	catch (Exception^ e)
+	catch (Exception^)
 	{
 		
 	}
@@ -68,7 +68,6 @@ void DataReader::Read_S()
 	}
 	Informar("Fin While Busqueda" + frame);
 	if (frame == numSelector) {
-		Punto3D^ a;
 		Puntos->Add(gcnew Punto3D(Convert::ToDouble(entrada->Split(',')[2]), Convert::ToDouble(entrada->Split(',')[3]), Convert::ToDouble(entrada->Split(',')[4])));
 		while (entrada->Length < 5 || frame == numSelector) {
 			Informar("While Puntos");
@@ -77,7 +76,6 @@ void DataReader::Read_S()
 				frame = Convert::ToInt32(entrada->Split(',')[0]);
 				if (frame == numSelector) {
 					Informar("Meter puntos");
-					Punto3D^ a;
 					Puntos->Add(gcnew Punto3D(Convert::ToDouble(entrada->Split(',')[2]), Convert::ToDouble(entrada->Split(',')[3]), Convert::ToDouble(entrada->Split(',')[4])));
 				}
 			}

@@ -69,7 +69,7 @@ OpenGl::OpenGl(cli::array<Thread^>^ Threads)
 		ThreadDIO->Start();
 		this->Threads[THREAD_OPENGL] = ThreadDIO;
 	}
-	catch (Exception^ e)
+	catch (Exception^)
 	{
 		//System::Windows::Forms::MessageBox::Show(e->ToString());
 	}
@@ -93,7 +93,7 @@ void OpenGl::modificarObstaculos(List<Obstaculo^>^ listEntradaObstaculos)
 	limpiarListas();
 	if (!MODO_CAJA) {
 		for (int recorridoO = 0; recorridoO < listEntradaObstaculos->Count; recorridoO++) {
-			if (recorridoO == NUM_OBSTACULOS)
+			if (recorridoO == NUMBER_OBSTACLES)
 			{
 				break;
 			}
@@ -144,7 +144,7 @@ void OpenGl::modificarObstaculos(List<Obstaculo^>^ listEntradaObstaculos)
 	}
 	else {
 		for (int recorridoO = 0; recorridoO < listEntradaObstaculos->Count; recorridoO++) {
-			if (recorridoO == NUM_OBSTACULOS)
+			if (recorridoO == NUMBER_OBSTACLES)
 			{
 				break;
 			}
@@ -204,7 +204,7 @@ void OpenGl::iniciarPuntos()
 }
 void OpenGl::iniciarObstaculos()
 {
-	for (int llenarObstaculos = 0; llenarObstaculos < 9 * NUM_OBSTACULOS; llenarObstaculos++) {
+	for (int llenarObstaculos = 0; llenarObstaculos < 9 * NUMBER_OBSTACLES; llenarObstaculos++) {
 		obstaculos->Add(gcnew Punto3D(0, 0, 0));
 	}
 }
@@ -490,14 +490,14 @@ void keyboard(unsigned char key, int x, int y) {
 		exit(0);
 		break;
 	case 43:
-		glScalef(1.1, 1.1, 1.1);
+		glScalef((GLfloat)1.1, (GLfloat) 1.1, (GLfloat) 1.1);
 		break;
 	case 45:
-		glScalef(0.9, 0.9, 0.9);
+		glScalef((GLfloat)0.9, (GLfloat) 0.9, (GLfloat) 0.9);
 		break;
 	case 32:
 		glLoadIdentity();
-		glScalef(0.05, 0.05, 0.05);
+		glScalef((GLfloat)0.05, (GLfloat) 0.05, (GLfloat) 0.05);
 		break;
 	}
 	glutPostRedisplay();

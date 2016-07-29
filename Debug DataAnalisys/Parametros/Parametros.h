@@ -55,11 +55,11 @@
 #define NUMERO_FILAS 16 //Coincide con el numero de canales
 #define TAMAÑO_MINIMO_OBSTACULO 20
 #define TIEMPO_MARGEN 0.3 //TODO: Ajustar parametro
-#define DISTANCIA_MAXIMA 2
+#define DISTANCIA_MAXIMA 4
 #define PI Math::PI
 
 //Constantes OpenGl
-#define NUM_OBSTACULOS 250
+#define NUMBER_OBSTACLES 250
 
 //Constantes GPS
 #define SIZE_ARRAY_GPS 8

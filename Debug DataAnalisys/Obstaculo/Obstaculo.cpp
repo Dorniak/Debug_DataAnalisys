@@ -67,7 +67,6 @@ Punto3D^ Obstaculo::getWest() {
 Punto3D ^ Obstaculo::getCloser()
 {
 	return Closer;
-	// TODO: insert return statement here
 }
 
 Punto3D ^ Obstaculo::getPunto1()
@@ -106,7 +105,6 @@ Punto3D ^ Obstaculo::getPunto8()
 Punto3D ^ Obstaculo::getFarthest()
 {
 	return Farthest;
-	// TODO: insert return statement here
 }
 /// <summary>
 /// Gets the velocity.
@@ -152,12 +150,11 @@ void Obstaculo::setDirection(Punto3D^ Previous_Position)
 /// <param name="Frecuency">The frecuency of the LIDAR.</param>
 void Obstaculo::setVelocity(double Car_velocity, double Frecuency)
 {
-	/*Punto3D^ velocity_vector = gcnew Punto3D();*/
-	Punto3D^ velocity_vector;
+	//TODO::Revisar ecuacion de velocidad
+	Punto3D^ velocity_vector = gcnew Punto3D();
 	velocity_vector->setCoordinatesY(Car_velocity);
-
 	Velocity = (Direction*Frecuency - velocity_vector)->getModule();//m/s
-																	//TODO::Calcular el modulo del vector direccion y multiplicarlo por el tiempo de barrido v a vector, direccion - v, direciona modulo/fr
+	delete velocity_vector;
 }
 /// <summary>
 /// Sets the north.
@@ -217,8 +214,8 @@ void Obstaculo::calculateTimeToCollision(double vel)
 	Punto3D^ Culo_Coche = gcnew Punto3D(0, 0, 0);
 	Punto3D^ Morro_Obstaculo;
 	Punto3D^ Culo_Obstaculo;
-	Punto3D^ Zone_in;
-	Punto3D^ Zone_out;
+	Punto3D^ Zone_in = gcnew Punto3D();
+	Punto3D^ Zone_out = gcnew Punto3D();
 	double car_time_in, car_time_out, obs_time_in, obs_time_out;
 
 	if (Center->getCoordinatesX() > 0) {
@@ -234,7 +231,7 @@ void Obstaculo::calculateTimeToCollision(double vel)
 	car_time_out = (Zone_out - Culo_Coche)->getModule() / vel;
 	obs_time_in = (Zone_in - Morro_Obstaculo)->getModule() / Velocity;
 	obs_time_out = (Zone_out - Culo_Obstaculo)->getModule() / Velocity;
-	//TODO::Calcular el TTC a partir de la velocidad del coche y del veector direccion del obstaculo
+	//TODO::Calcular el TTC a partir de la velocidad del coche y del vector direccion del obstaculo
 }
 
 void Obstaculo::prepareObstacle()
