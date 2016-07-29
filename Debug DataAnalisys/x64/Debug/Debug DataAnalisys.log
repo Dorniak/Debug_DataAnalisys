@@ -1,4 +1,9 @@
-﻿  OpenGl.cpp
+﻿  DataAnalisys.cpp
+DataAnalisys\DataAnalisys.cpp(508): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Interfaz.cpp
+  OpenGl.cpp
+  reader.cpp
+  Generating Code...
 d:\documentos\github\debug_dataanalisys\debug dataanalisys\opengl\opengl.cpp(50): warning C4700: uninitialized local variable 'argv' used
   DataAnalisys.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Debug DataAnalisys.vcxproj -> D:\Documentos\GitHub\Debug_DataAnalisys\x64\Debug\Debug DataAnalisys.exe

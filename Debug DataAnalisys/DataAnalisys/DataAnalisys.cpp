@@ -501,14 +501,13 @@ void DataAnalisys::relacionarPos(int i, int j, double Frecuency)
 
 bool DataAnalisys::comprobarBloqueo(List<Punto3D^>^ matriz)
 {
-
 	//Devuelve true cuando hay bloqueo
 	int medio = (matriz->Count / 16) / 2;
 	Punto3D^ prueba;
 
 	for (int k = medio*0.95; k < medio*1.05; k++) {//5 % de vision delantera
 		for (int i = 0; i < NUMERO_FILAS; i++) {
-			if (matriz[convaPos(k, i)] && matriz[convaPos(k, i)]->valido && matriz[convaPos(k, i)]->getDistance() < 15 && matriz[convaPos(k, i)]->getCoordinatesZ() > 5) {//Altura de bloquepmayor k 0.2
+			if (matriz[convaPos(k, i)] && matriz[convaPos(k, i)]->valido && matriz[convaPos(k, i)]->getDistance() < 15 && matriz[convaPos(k, i)]->getCoordinatesZ() > ALTURA_MINIMA_OBST) {//Altura de bloquepmayor k 0.2
 				prueba = matriz[convaPos(k, i)];
 				return true;
 			}

@@ -57,6 +57,7 @@
 #define TIEMPO_MARGEN 0.3 //TODO: Ajustar parametro
 #define DISTANCIA_MAXIMA 4
 #define PI Math::PI
+#define ALTURA_MINIMA_OBST 0.2
 
 //Constantes OpenGl
 #define NUMBER_OBSTACLES 250
